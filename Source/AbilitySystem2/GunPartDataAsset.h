@@ -6,10 +6,20 @@
 #include "Engine/DataAsset.h"
 #include "GunPartDataAsset.generated.h"
 
+UENUM()
+enum class EWpnPartType : uint8
+{
+	Cross,
+	Handle,
+	Magazine,
+	Cannon,
+	Hammer
+};
+
 /**
  * 
  */
-UCLASS()
+UCLASS(Blueprintable, BlueprintType)
 class ABILITYSYSTEM2_API UGunPartDataAsset : public UDataAsset
 {
 	GENERATED_BODY()
@@ -19,6 +29,9 @@ class ABILITYSYSTEM2_API UGunPartDataAsset : public UDataAsset
 
 	UPROPERTY(EditAnywhere)
 	float DamageBonus = 20.0f;
+
+	UPROPERTY(EditAnywhere)
+	EWpnPartType WeaponType;
 
 	UPROPERTY(EditAnywhere)
 	TObjectPtr<UStaticMesh> Mesh;

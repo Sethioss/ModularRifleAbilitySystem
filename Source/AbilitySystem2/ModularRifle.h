@@ -3,7 +3,6 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "GunPart.h"
 #include "GunPartComponent.h"
 #include "ModularWeaponComponent.h"
 #include "TP_PickUpComponent.h"
@@ -26,9 +25,6 @@ protected:
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	TArray<TObjectPtr<UGunPart>> Parts;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TObjectPtr<UTP_ModularWeaponComponent> WeaponComponent = nullptr;
@@ -36,21 +32,23 @@ public:
 	UPROPERTY(EditAnywhere)
 	TObjectPtr<UTP_PickUpComponent> PickUpComponent = nullptr;
 
-	UPROPERTY(EditAnywhere, Category = "Parts")
-	TObjectPtr<UGunPartComponent> Magazine = nullptr;
+	void ChangeWeaponPart();
 	
-	UPROPERTY(EditAnywhere, Category = "Parts")
-	TObjectPtr<UGunPartComponent> Cannon = nullptr;
-
-	UPROPERTY(EditAnywhere, Category = "Parts")
-	TObjectPtr<UGunPartComponent> Handle = nullptr;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	TObjectPtr<UDataAsset> MagazineStats = nullptr;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	TObjectPtr<UDataAsset> CannonStats = nullptr;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	TObjectPtr<UDataAsset> HandleStats = nullptr;
+	//UPROPERTY(EditAnywhere, Category = "Parts")
+	//TObjectPtr<UGunPartComponent> Magazine = nullptr;
+	//
+	//UPROPERTY(EditAnywhere, Category = "Parts")
+	//TObjectPtr<UGunPartComponent> Cannon = nullptr;
+	//
+	//UPROPERTY(EditAnywhere, Category = "Parts")
+	//TObjectPtr<UGunPartComponent> Handle = nullptr;
+	//
+	//UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	//TObjectPtr<UDataAsset> MagazineStats = nullptr;
+	//
+	//UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	//TObjectPtr<UDataAsset> CannonStats = nullptr;
+	//
+	//UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	//TObjectPtr<UDataAsset> HandleStats = nullptr;
 };

@@ -14,17 +14,17 @@ AModularRifle::AModularRifle()
 	PickUpComponent = CreateDefaultSubobject<UTP_PickUpComponent>(TEXT("PickUpComponent"));
 	PickUpComponent->SetupAttachment(WeaponComponent);
 
-	Magazine = CreateDefaultSubobject<UGunPartComponent>(TEXT("Magazine"));
-	Magazine->SetupAttachment(WeaponComponent);
-	Magazine->SetCollisionEnabled(ECollisionEnabled::NoCollision);
-
-	Cannon = CreateDefaultSubobject<UGunPartComponent>(TEXT("Cannon"));
-	Cannon->SetupAttachment(WeaponComponent);
-	Cannon->SetCollisionEnabled(ECollisionEnabled::NoCollision);
-
-	Handle = CreateDefaultSubobject<UGunPartComponent>(TEXT("Handle"));
-	Handle->SetupAttachment(WeaponComponent);
-	Handle->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+	//Magazine = CreateDefaultSubobject<UGunPartComponent>(TEXT("Magazine"));
+	//Magazine->SetupAttachment(WeaponComponent);
+	//Magazine->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+	//
+	//Cannon = CreateDefaultSubobject<UGunPartComponent>(TEXT("Cannon"));
+	//Cannon->SetupAttachment(WeaponComponent);
+	//Cannon->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+	//
+	//Handle = CreateDefaultSubobject<UGunPartComponent>(TEXT("Handle"));
+	//Handle->SetupAttachment(WeaponComponent);
+	//Handle->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 }
 
 // Called when the game starts or when spawned

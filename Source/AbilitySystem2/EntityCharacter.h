@@ -1,0 +1,37 @@
+// Fill out your copyright notice in the Description page of Project Settings.
+
+#pragma once
+
+#include "CoreMinimal.h"
+#include "GameFramework/Character.h"
+#include "DA_Entity.h"
+#include "GunPartComponent.h"
+#include "Templates/SubclassOf.h"
+#include "EntityCharacter.generated.h"
+
+UCLASS()
+class ABILITYSYSTEM2_API AEntityCharacter : public ACharacter
+{
+	GENERATED_BODY()
+
+public:
+	// Sets default values for this character's properties
+	AEntityCharacter();
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Stats")
+	TObjectPtr<UDA_Entity> EntityDataAsset;
+
+protected:
+	// Called when the game starts or when spawned
+	virtual void BeginPlay() override;
+
+public:	
+	// Called every frame
+	virtual void Tick(float DeltaTime) override;
+
+	// Called to bind functionality to input
+	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+
+	UFUNCTION(BlueprintCallable)
+	void ReplaceWeaponPart(TSubclassOf<UGunPartComponent> Slot, TSubclassOf<UGunPartComponent> GunPart);
+};

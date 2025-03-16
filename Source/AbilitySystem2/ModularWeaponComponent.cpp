@@ -3,3 +3,7 @@
 
 #include "ModularWeaponComponent.h"
 
+void UTP_ModularWeaponComponent::Fire()
+{
+
+}
