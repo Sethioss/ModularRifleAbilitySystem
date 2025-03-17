@@ -19,19 +19,22 @@ public:
 	UPROPERTY(EditAnywhere)
 	TObjectPtr<UDataAsset> RelevantStats;
 
-	UFUNCTION(BlueprintImplementableEvent)
+	UFUNCTION(BlueprintNativeEvent)
+	void OnShoot(AActor* Instigator, AActor* HitActor);
+
+	UFUNCTION(BlueprintNativeEvent)
 	void OnTraversal();
 
-	UFUNCTION(BlueprintImplementableEvent)
+	UFUNCTION(BlueprintNativeEvent)
 	void OnHit(AActor* Instigator, AActor* HitActor);
 
-	UFUNCTION(BlueprintImplementableEvent)
+	UFUNCTION(BlueprintNativeEvent)
 	void OnHitWall(AActor* Instigator, AActor* HitActor);
 
-	UFUNCTION(BlueprintImplementableEvent)
+	UFUNCTION(BlueprintNativeEvent)
 	void OnMiss(AActor* Instigator);
 
-	UFUNCTION(BlueprintImplementableEvent)
+	UFUNCTION(BlueprintNativeEvent)
 	void OnApplyEffects();
 
 	void PassStatsToBullet();

@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "TP_WeaponComponent.h"
 #include "Ability.h"
+#include "Bullet.h"
 #include "ModularWeaponComponent.generated.h"
 
 /**
@@ -22,6 +23,6 @@ public:
 	UPROPERTY()
 	TArray<TSubclassOf<UAbility>> ShootAbilities;
 
-	void Fire();
+	virtual void Fire() override;
 	
 };

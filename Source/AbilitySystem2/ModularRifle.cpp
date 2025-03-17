@@ -34,10 +34,22 @@ void AModularRifle::BeginPlay()
 	
 }
 
+void AModularRifle::EndPlay(EEndPlayReason::Type EndPlayReason)
+{
+	Super::EndPlay(EndPlayReason);
+}
+
 // Called every frame
 void AModularRifle::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+}
+
+TArray<UGunPartComponent*> AModularRifle::GetModularWeaponParts()
+{
+	TArray<UGunPartComponent*> Comps;
+	GetComponents<UGunPartComponent>(Comps);
+	return Comps;
 }
 

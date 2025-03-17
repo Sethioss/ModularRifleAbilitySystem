@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Components/SkeletalMeshComponent.h"
+#include "Bullet.h"
 #include "TP_WeaponComponent.generated.h"
 
 class AAbilitySystem2Character;
@@ -14,9 +15,11 @@ class ABILITYSYSTEM2_API UTP_WeaponComponent : public USkeletalMeshComponent
 	GENERATED_BODY()
 
 public:
+	TObjectPtr<ABullet> ProjectileThrown;
+
 	/** Projectile class to spawn */
 	UPROPERTY(EditDefaultsOnly, Category=Projectile)
-	TSubclassOf<class AAbilitySystem2Projectile> ProjectileClass;
+	TSubclassOf<ABullet> ProjectileClass;
 
 	/** Sound to play each time we fire */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category=Gameplay)
@@ -47,7 +50,7 @@ public:
 
 	/** Make the weapon Fire a Projectile */
 	UFUNCTION(BlueprintCallable, Category="Weapon")
-	void Fire();
+	virtual void Fire();
 
 protected:
 	/** Ends gameplay for this component. */

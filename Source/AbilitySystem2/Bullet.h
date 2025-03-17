@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "Ability.h"
+#include "AbilitySystem2Projectile.h"
 #include "Bullet.generated.h"
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnBulletTraversalSignature);
@@ -17,7 +18,7 @@ DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnApplyEffectsSignature);
 
 
 UCLASS()
-class ABILITYSYSTEM2_API ABullet : public AActor
+class ABILITYSYSTEM2_API ABullet : public AAbilitySystem2Projectile
 {
 	GENERATED_BODY()
 	
@@ -35,6 +36,8 @@ public:
 	FOnMissSignature OnMissDelegate;
 	
 	FOnApplyEffectsSignature OnApplyEffectsDelegate;
+
+	bool broadcasted = false;
 
 protected:
 	// Called when the game starts or when spawned

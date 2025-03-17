@@ -21,6 +21,7 @@ public:
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
+	virtual void EndPlay(EEndPlayReason::Type EndPlayReason) override;
 
 public:	
 	// Called every frame
@@ -33,6 +34,8 @@ public:
 	TObjectPtr<UTP_PickUpComponent> PickUpComponent = nullptr;
 
 	void ChangeWeaponPart();
+
+	TArray<UGunPartComponent*> GetModularWeaponParts();
 	
 	//UPROPERTY(EditAnywhere, Category = "Parts")
 	//TObjectPtr<UGunPartComponent> Magazine = nullptr;
