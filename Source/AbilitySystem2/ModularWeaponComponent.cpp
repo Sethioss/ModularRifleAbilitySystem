@@ -20,6 +20,7 @@ void UTP_ModularWeaponComponent::Fire()
 				UAbility* Ability = NewObject<UAbility>(this, AbilityClass);
 				if (Ability)
 				{
+					//Test to see if on shoot is called
 					Ability->OnShoot(nullptr, nullptr);
 
 					ProjectileThrown->OnTraversalDelegate.AddDynamic(Ability, &UAbility::OnTraversal);
@@ -33,3 +34,9 @@ void UTP_ModularWeaponComponent::Fire()
 	}
 
 }
+
+void UTP_ModularWeaponComponent::EndPlay(const EEndPlayReason::Type EndPlayReason)
+{
+	Super::EndPlay(EndPlayReason);
+}
+

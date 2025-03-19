@@ -11,7 +11,7 @@ void UAbility::OnTraversal_Implementation()
 {
 }
 
-void UAbility::OnHit_Implementation(AActor* Instigator, AActor* HitActor)
+void UAbility::OnHit_Implementation(AActor* Instigator, AActor* Bullet, AActor* HitActor)
 {
 }
 

@@ -27,11 +27,6 @@ void ABullet::BeginPlay()
 void ABullet::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-	//TEST, DO NOT UNCOMMENT
-	//if (OnApplyEffectsDelegate.IsBound())
-	//{
-	//	OnApplyEffectsDelegate.Broadcast();
-	//}
 
 }
 

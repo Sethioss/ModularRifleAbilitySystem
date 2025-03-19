@@ -10,7 +10,7 @@
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnBulletTraversalSignature);
 
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnHitSignature, AActor*, Instigator, AActor*, HitActor);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_ThreeParams(FOnHitSignature, AActor*, Instigator, AActor*, Bullet, AActor*, HitActor);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnHitWallSignature, AActor*, Instigator, AActor*, HitActor);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnMissSignature, AActor*, Instigator);
 
@@ -29,12 +29,13 @@ public:
 
 	FOnBulletTraversalSignature OnTraversalDelegate;
 	
+	UPROPERTY(BlueprintCallable)
 	FOnHitSignature OnHitDelegate;
-	
+	UPROPERTY(BlueprintCallable)
 	FOnHitWallSignature OnHitWallDelegate;
-	
+	UPROPERTY(BlueprintCallable)
 	FOnMissSignature OnMissDelegate;
-	
+	UPROPERTY(BlueprintCallable)
 	FOnApplyEffectsSignature OnApplyEffectsDelegate;
 
 	bool broadcasted = false;
@@ -43,11 +44,14 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-	UPROPERTY(VisibleAnywhere)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 	TMap<FString, float> PassedStats;
 
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	TObjectPtr<AActor> BulletSource = nullptr;
 
 };

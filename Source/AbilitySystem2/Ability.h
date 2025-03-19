@@ -26,7 +26,7 @@ public:
 	void OnTraversal();
 
 	UFUNCTION(BlueprintNativeEvent)
-	void OnHit(AActor* Instigator, AActor* HitActor);
+	void OnHit(AActor* Instigator, AActor* Bullet, AActor* HitActor);
 
 	UFUNCTION(BlueprintNativeEvent)
 	void OnHitWall(AActor* Instigator, AActor* HitActor);

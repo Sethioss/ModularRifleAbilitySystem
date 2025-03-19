@@ -45,6 +45,7 @@ void UTP_WeaponComponent::Fire()
 	
 			// Spawn the projectile at the muzzle
 			ProjectileThrown = World->SpawnActor<ABullet>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
+			ProjectileThrown->BulletSource = GetOwner();
 		}
 	}
 	

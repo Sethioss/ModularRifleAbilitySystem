@@ -25,4 +25,6 @@ public:
 
 	virtual void Fire() override;
 	
+protected:
+	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
 };
