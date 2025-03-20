@@ -6,13 +6,14 @@
 #include "GameFramework/Actor.h"
 #include "Ability.h"
 #include "AbilitySystem2Projectile.h"
+#include "Engine/HitResult.h"
 #include "Bullet.generated.h"
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnBulletTraversalSignature);
 
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_ThreeParams(FOnHitSignature, AActor*, Instigator, AActor*, Bullet, AActor*, HitActor);
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnHitWallSignature, AActor*, Instigator, AActor*, HitActor);
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnMissSignature, AActor*, Instigator);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_ThreeParams(FOnHitSignature, AActor*, Instigator, AActor*, Bullet, FHitResult, HitResult);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnHitWallSignature, AActor*, Bullet, FHitResult, HitResult);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnMissSignature, AActor*, Bullet);
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnApplyEffectsSignature);
 
@@ -23,12 +24,15 @@ class ABILITYSYSTEM2_API ABullet : public AAbilitySystem2Projectile
 	GENERATED_BODY()
 	
 public:	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TObjectPtr<UGunPartDataAsset> RelevantStats;
+
 	// Sets default values for this actor's properties
 	ABullet();
 	ABullet(TObjectPtr<UAbility> SpawnAbility);
 
 	FOnBulletTraversalSignature OnTraversalDelegate;
-	
+
 	UPROPERTY(BlueprintCallable)
 	FOnHitSignature OnHitDelegate;
 	UPROPERTY(BlueprintCallable)

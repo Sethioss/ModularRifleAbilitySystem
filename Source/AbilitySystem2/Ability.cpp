@@ -11,15 +11,15 @@ void UAbility::OnTraversal_Implementation()
 {
 }
 
-void UAbility::OnHit_Implementation(AActor* Instigator, AActor* Bullet, AActor* HitActor)
+void UAbility::OnHit_Implementation(AActor* Instigator, AActor* Bullet, FHitResult HitResult)
 {
 }
 
-void UAbility::OnHitWall_Implementation(AActor* Instigator, AActor* HitActor)
+void UAbility::OnHitWall_Implementation(AActor* Instigator, FHitResult HitResult)
 {
 }
 
-void UAbility::OnMiss_Implementation(AActor* Instigator)
+void UAbility::OnMiss_Implementation(AActor* Bullet)
 {
 }
 

@@ -24,19 +24,26 @@ class ABILITYSYSTEM2_API UGunPartDataAsset : public UDataAsset
 {
 	GENERATED_BODY()
 
-	UPROPERTY(EditAnywhere)
+public:
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	int Priority = 0;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	float DamageBonus = 20.0f;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FVector AbilityStrength = FVector(1.0f);
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	EWpnPartType WeaponType;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TObjectPtr<UStaticMesh> Mesh;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TObjectPtr<UMaterialInstance> Mat;
+
+	UFUNCTION(BlueprintPure)
+	FVector GetAbilityStrength() { return AbilityStrength; }
 	
 };

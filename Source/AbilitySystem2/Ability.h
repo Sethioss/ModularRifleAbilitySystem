@@ -4,6 +4,8 @@
 
 #include "CoreMinimal.h"
 #include "UObject/NoExportTypes.h"
+#include "Engine/HitResult.h"
+#include "GunPartDataAsset.h"
 #include "Ability.generated.h"
 
 /**
@@ -17,7 +19,7 @@ class ABILITYSYSTEM2_API UAbility : public UObject
 public:
 		
 	UPROPERTY(EditAnywhere)
-	TObjectPtr<UDataAsset> RelevantStats;
+	TObjectPtr<UGunPartDataAsset> RelevantStats;
 
 	UFUNCTION(BlueprintNativeEvent)
 	void OnShoot(AActor* Instigator, AActor* HitActor);
@@ -26,13 +28,13 @@ public:
 	void OnTraversal();
 
 	UFUNCTION(BlueprintNativeEvent)
-	void OnHit(AActor* Instigator, AActor* Bullet, AActor* HitActor);
+	void OnHit(AActor* Instigator, AActor* Bullet, FHitResult HitResult);
 
 	UFUNCTION(BlueprintNativeEvent)
-	void OnHitWall(AActor* Instigator, AActor* HitActor);
+	void OnHitWall(AActor* Bullet, FHitResult HitResult);
 
 	UFUNCTION(BlueprintNativeEvent)
-	void OnMiss(AActor* Instigator);
+	void OnMiss(AActor* Bullet);
 
 	UFUNCTION(BlueprintNativeEvent)
 	void OnApplyEffects();

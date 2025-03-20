@@ -18,10 +18,14 @@ void UTP_ModularWeaponComponent::Fire()
 			for (TSubclassOf<UAbility> AbilityClass : GunCompList[i]->ShootAbilities)
 			{
 				UAbility* Ability = NewObject<UAbility>(this, AbilityClass);
+
 				if (Ability)
 				{
 					//Test to see if on shoot is called
 					Ability->OnShoot(nullptr, nullptr);
+
+					ProjectileThrown->RelevantStats = NewObject<UGunPartDataAsset>(Ability->RelevantStats);
+					ProjectileThrown->RelevantStats = Ability->RelevantStats;
 
 					ProjectileThrown->OnTraversalDelegate.AddDynamic(Ability, &UAbility::OnTraversal);
 					ProjectileThrown->OnHitDelegate.AddDynamic(Ability, &UAbility::OnHit);
