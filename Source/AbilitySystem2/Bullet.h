@@ -7,6 +7,8 @@
 #include "Ability.h"
 #include "AbilitySystem2Projectile.h"
 #include "Engine/HitResult.h"
+#include "EmbarkedDataSet.h"
+#include "GunPartDataAsset.h"
 #include "Bullet.generated.h"
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnBulletTraversalSignature);
@@ -23,7 +25,11 @@ class ABILITYSYSTEM2_API ABullet : public AAbilitySystem2Projectile
 {
 	GENERATED_BODY()
 	
-public:	
+public:
+	
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	TArray<UEmbarkedDataSet*> EmbarkedData;
+	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TObjectPtr<UGunPartDataAsset> RelevantStats;
 
@@ -42,8 +48,6 @@ public:
 	UPROPERTY(BlueprintCallable)
 	FOnApplyEffectsSignature OnApplyEffectsDelegate;
 
-	bool broadcasted = false;
-
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -57,5 +61,8 @@ public:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	TObjectPtr<AActor> BulletSource = nullptr;
+
+	UFUNCTION(BlueprintCallable)
+	UGunPartDataAsset* FindDataAssetByName(FName Name);
 
 };

@@ -3,6 +3,7 @@
 
 #include "ModularWeaponComponent.h"
 #include "ModularRifle.h"
+#include "EmbarkedDataSet.h"
 #include "Ability.h"
 
 void UTP_ModularWeaponComponent::Fire()
@@ -24,8 +25,14 @@ void UTP_ModularWeaponComponent::Fire()
 					//Test to see if on shoot is called
 					Ability->OnShoot(nullptr, nullptr);
 
-					ProjectileThrown->RelevantStats = NewObject<UGunPartDataAsset>(Ability->RelevantStats);
-					ProjectileThrown->RelevantStats = Ability->RelevantStats;
+					UEmbarkedDataSet* DataSet = NewObject<UEmbarkedDataSet>();
+					DataSet->AbilityName = Ability->GetName();
+					DataSet->DataAsset = NewObject<UGunPartDataAsset>(Ability->RelevantStats);
+					DataSet->DataAsset = Ability->RelevantStats;
+					ProjectileThrown->EmbarkedData.Add(DataSet);
+					
+					//ProjectileThrown->RelevantStats = NewObject<UGunPartDataAsset>(Ability->RelevantStats);
+					//ProjectileThrown->RelevantStats = Ability->RelevantStats;
 
 					ProjectileThrown->OnTraversalDelegate.AddDynamic(Ability, &UAbility::OnTraversal);
 					ProjectileThrown->OnHitDelegate.AddDynamic(Ability, &UAbility::OnHit);

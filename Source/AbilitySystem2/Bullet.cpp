@@ -30,3 +30,16 @@ void ABullet::Tick(float DeltaTime)
 
 }
 
+UGunPartDataAsset* ABullet::FindDataAssetByName(FName Name)
+{
+	for (UEmbarkedDataSet* DataSet : EmbarkedData)
+	{
+		if(DataSet->AbilityName == Name)
+		{
+			return DataSet->DataAsset;
+		}
+	}
+
+	return nullptr;
+}
+
