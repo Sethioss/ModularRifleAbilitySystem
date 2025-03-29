@@ -10,44 +10,29 @@ void UTP_ModularWeaponComponent::Fire()
 {
 	Super::Fire();
 
-	AModularRifle* Rifle = Cast<AModularRifle>(GetOwner());
-	if (Rifle)
+	for (int i = 0; i < GunParts.Num(); i++)
 	{
-		TArray<UGunPartComponent*> GunCompList = Rifle->GetModularWeaponParts();
-		for (int i = 0; i < GunCompList.Num(); ++i)
+		UGunPart* GunPart = Cast<UGunPart>(GunParts[i]->GetDefaultObject());
+
+		for (TSubclassOf<UAbility> AbilityClass : GunPart->ShootAbilities)
 		{
-			for (TSubclassOf<UAbility> AbilityClass : GunCompList[i]->ShootAbilities)
+			UAbility* Ability = NewObject<UAbility>(this, AbilityClass);
+
+			if (Ability)
 			{
-				UAbility* Ability = NewObject<UAbility>(this, AbilityClass);
+				//Test to see if on shoot is called
+				Ability->OnShoot(nullptr, nullptr);
 
-				if (Ability)
-				{
-					//Test to see if on shoot is called
-					Ability->OnShoot(nullptr, nullptr);
+				UEmbarkedDataSet* DataSet = NewObject<UEmbarkedDataSet>();
+				DataSet->AbilityName = Ability->GetName();
 
-					UEmbarkedDataSet* DataSet = NewObject<UEmbarkedDataSet>();
-					DataSet->AbilityName = Ability->GetName();
-					DataSet->DataAsset = NewObject<UGunPartDataAsset>(Ability->RelevantStats);
-					DataSet->DataAsset = Ability->RelevantStats;
-					ProjectileThrown->EmbarkedData.Add(DataSet);
-					
-					//ProjectileThrown->RelevantStats = NewObject<UGunPartDataAsset>(Ability->RelevantStats);
-					//ProjectileThrown->RelevantStats = Ability->RelevantStats;
-
-					ProjectileThrown->OnTraversalDelegate.AddDynamic(Ability, &UAbility::OnTraversal);
-					ProjectileThrown->OnHitDelegate.AddDynamic(Ability, &UAbility::OnHit);
-					ProjectileThrown->OnHitWallDelegate.AddDynamic(Ability, &UAbility::OnHitWall);
-					ProjectileThrown->OnMissDelegate.AddDynamic(Ability, &UAbility::OnMiss);
-					ProjectileThrown->OnApplyEffectsDelegate.AddDynamic(Ability, &UAbility::OnApplyEffects);
-				}
+				ProjectileThrown->OnTraversalDelegate.AddDynamic(Ability, &UAbility::OnTraversal);
+				ProjectileThrown->OnHitDelegate.AddDynamic(Ability, &UAbility::OnHit);
+				ProjectileThrown->OnHitWallDelegate.AddDynamic(Ability, &UAbility::OnHitWall);
+				ProjectileThrown->OnMissDelegate.AddDynamic(Ability, &UAbility::OnMiss);
+				ProjectileThrown->OnApplyEffectsDelegate.AddDynamic(Ability, &UAbility::OnApplyEffects);
 			}
 		}
 	}
-
-}
-
-void UTP_ModularWeaponComponent::EndPlay(const EEndPlayReason::Type EndPlayReason)
-{
-	Super::EndPlay(EndPlayReason);
 }
 

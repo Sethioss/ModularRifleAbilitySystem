@@ -26,15 +26,6 @@ class ABILITYSYSTEM2_API UGunPartDataAsset : public UDataAsset
 
 public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	int Priority = 0;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	float DamageBonus = 20.0f;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	FVector AbilityStrength = FVector(1.0f);
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	EWpnPartType WeaponType;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
@@ -42,8 +33,5 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TObjectPtr<UMaterialInstance> Mat;
-
-	UFUNCTION(BlueprintPure)
-	FVector GetAbilityStrength() { return AbilityStrength; }
 	
 };

@@ -3,7 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "GunPartDataAsset.h"
+#include "AbilityStatDataAsset.h"
 #include "Ability.h"
 #include "DamageEffect.h"
 #include "GunPart.generated.h"
@@ -18,7 +18,7 @@ class ABILITYSYSTEM2_API UGunPart : public UObject
 
 public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Modular Gun System")
-	TObjectPtr<UGunPartDataAsset> PartDataAsset;
+	TObjectPtr<UAbilityStatDataAsset> PartDataAsset;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Modular Gun System")
 	TArray< TSubclassOf<UAbility>> ShootAbilities;

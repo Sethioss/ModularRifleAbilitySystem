@@ -27,9 +27,6 @@ class ABILITYSYSTEM2_API ABullet : public AAbilitySystem2Projectile
 	
 public:
 	
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	TArray<UEmbarkedDataSet*> EmbarkedData;
-	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TObjectPtr<UGunPartDataAsset> RelevantStats;
 
@@ -61,8 +58,5 @@ public:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	TObjectPtr<AActor> BulletSource = nullptr;
-
-	UFUNCTION(BlueprintCallable)
-	UGunPartDataAsset* FindDataAssetByName(FName Name);
 
 };

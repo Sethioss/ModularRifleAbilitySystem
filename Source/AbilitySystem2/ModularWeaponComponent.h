@@ -27,7 +27,4 @@ public:
 	TArray<TSubclassOf<UAbility>> ShootAbilities;
 
 	virtual void Fire() override;
-	
-protected:
-	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
 };

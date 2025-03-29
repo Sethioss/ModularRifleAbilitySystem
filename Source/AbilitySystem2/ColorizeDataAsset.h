@@ -3,19 +3,19 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "GunPartDataAsset.h"
-#include "AngerizeDataAsset.generated.h"
+#include "AbilityStatDataAsset.h"
+#include "ColorizeDataAsset.generated.h"
 
 /**
  * 
  */
-UCLASS(Blueprintable, BlueprintType)
-class ABILITYSYSTEM2_API UAngerizeDataAsset : public UGunPartDataAsset
+UCLASS()
+class ABILITYSYSTEM2_API UColorizeDataAsset : public UAbilityStatDataAsset
 {
 	GENERATED_BODY()
-	
+
 public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	FLinearColor color;
+	FLinearColor ColorToApply;
 	
 };
