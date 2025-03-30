@@ -3,7 +3,6 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "GunPartComponent.h"
 #include "ModularWeaponComponent.h"
 #include "TP_PickUpComponent.h"
 #include "GameFramework/Actor.h"
@@ -34,24 +33,4 @@ public:
 	TObjectPtr<UTP_PickUpComponent> PickUpComponent = nullptr;
 
 	void ChangeWeaponPart();
-
-	TArray<UGunPartComponent*> GetModularWeaponParts();
-	
-	//UPROPERTY(EditAnywhere, Category = "Parts")
-	//TObjectPtr<UGunPartComponent> Magazine = nullptr;
-	//
-	//UPROPERTY(EditAnywhere, Category = "Parts")
-	//TObjectPtr<UGunPartComponent> Cannon = nullptr;
-	//
-	//UPROPERTY(EditAnywhere, Category = "Parts")
-	//TObjectPtr<UGunPartComponent> Handle = nullptr;
-	//
-	//UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	//TObjectPtr<UDataAsset> MagazineStats = nullptr;
-	//
-	//UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	//TObjectPtr<UDataAsset> CannonStats = nullptr;
-	//
-	//UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	//TObjectPtr<UDataAsset> HandleStats = nullptr;
 };

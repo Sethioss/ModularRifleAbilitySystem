@@ -103,8 +103,15 @@ bool UTP_WeaponComponent::AttachWeapon(AAbilitySystem2Character* TargetCharacter
 	return true;
 }
 
+void UTP_WeaponComponent::BeginPlay()
+{
+	Super::BeginPlay();
+}
+
 void UTP_WeaponComponent::EndPlay(const EEndPlayReason::Type EndPlayReason)
 {
+	Super::EndPlay(EndPlayReason);
+
 	if (Character == nullptr)
 	{
 		return;

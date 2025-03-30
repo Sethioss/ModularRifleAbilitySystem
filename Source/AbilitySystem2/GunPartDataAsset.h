@@ -6,16 +6,6 @@
 #include "Engine/DataAsset.h"
 #include "GunPartDataAsset.generated.h"
 
-UENUM()
-enum class EWpnPartType : uint8
-{
-	Cross,
-	Handle,
-	Magazine,
-	Cannon,
-	Hammer
-};
-
 /**
  * 
  */
@@ -26,12 +16,11 @@ class ABILITYSYSTEM2_API UGunPartDataAsset : public UDataAsset
 
 public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	EWpnPartType WeaponType;
+	int AmmoImprovement;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	TObjectPtr<UStaticMesh> Mesh;
+	float ReloadTimeImprovement;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	TObjectPtr<UMaterialInstance> Mat;
-	
+	float PowerImprovement;	
 };

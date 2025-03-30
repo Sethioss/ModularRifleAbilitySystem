@@ -53,6 +53,9 @@ public:
 	virtual void Fire();
 
 protected:
+
+	virtual void BeginPlay() override;
+
 	/** Ends gameplay for this component. */
 	UFUNCTION()
 	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
