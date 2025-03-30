@@ -16,7 +16,8 @@ enum class EWpnPartType : uint8
 	Magazine,
 	Cannon,
 	Hammer,
-	Visor
+	Visor,
+	GripPoint
 };
 
 UCLASS(Blueprintable, BlueprintType)
@@ -34,6 +35,9 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Visuals")
 	FVector MeshScale = FVector(1.0f);
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Visuals")
+	FVector MeshRotation = FVector(0.0f);
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Modular Gun System")
 	EWpnPartType WeaponType;

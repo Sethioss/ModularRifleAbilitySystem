@@ -25,27 +25,30 @@ void UTP_ModularWeaponComponent::Fire()
 
 	for (int i = 0; i < GunParts.Num(); i++)
 	{
-		UGunPart* GunPart = Cast<UGunPart>(GunParts[i]->GetDefaultObject());
-
-		for (TSubclassOf<UAbility> AbilityClass : GunPart->ShootAbilities)
+		if (GunParts[i])
 		{
-			UAbility* Ability = NewObject<UAbility>(this, AbilityClass);
+			UGunPart* GunPart = Cast<UGunPart>(GunParts[i]->GetDefaultObject());
 
-			if (Ability)
+			for (TSubclassOf<UAbility> AbilityClass : GunPart->ShootAbilities)
 			{
-				//Test to see if on shoot is called
-				Ability->OnShoot(nullptr, nullptr);
+				UAbility* Ability = NewObject<UAbility>(this, AbilityClass);
 
-				UEmbarkedDataSet* DataSet = NewObject<UEmbarkedDataSet>();
-				DataSet->AbilityName = Ability->GetName();
+				if (Ability)
+				{
+					//Test to see if on shoot is called
+					Ability->OnShoot(nullptr, nullptr);
 
-				ProjectileThrown->OnTraversalDelegate.AddDynamic(Ability, &UAbility::OnTraversal);
-				ProjectileThrown->OnHitDelegate.AddDynamic(Ability, &UAbility::OnHit);
-				ProjectileThrown->OnHitWallDelegate.AddDynamic(Ability, &UAbility::OnHitWall);
-				ProjectileThrown->OnMissDelegate.AddDynamic(Ability, &UAbility::OnMiss);
-				ProjectileThrown->OnApplyEffectsDelegate.AddDynamic(Ability, &UAbility::OnApplyEffects);
+					UEmbarkedDataSet* DataSet = NewObject<UEmbarkedDataSet>();
+					DataSet->AbilityName = Ability->GetName();
+
+					ProjectileThrown->OnTraversalDelegate.AddDynamic(Ability, &UAbility::OnTraversal);
+					ProjectileThrown->OnHitDelegate.AddDynamic(Ability, &UAbility::OnHit);
+					ProjectileThrown->OnHitWallDelegate.AddDynamic(Ability, &UAbility::OnHitWall);
+					ProjectileThrown->OnMissDelegate.AddDynamic(Ability, &UAbility::OnMiss);
+					ProjectileThrown->OnApplyEffectsDelegate.AddDynamic(Ability, &UAbility::OnApplyEffects);
+				}
 			}
-		}
+		}		
 	}
 }
 
@@ -60,42 +63,46 @@ void UTP_ModularWeaponComponent::UpdateWeaponParts()
 
 	for (int i = 0; i < GunParts.Num(); i++)
 	{
-		UGunPart* GunPart = Cast<UGunPart>(GunParts[i]->GetDefaultObject());
-		if (GunPart->Mesh)
+		if (GunParts[i])
 		{
-			UStaticMesh* PartMesh = GunPart->Mesh;
-
-			const UEnum* PartType = StaticEnum<EWpnPartType>();
-
-			FText TextRepresentation = PartType->GetDisplayNameTextByValue((int64)GunPart->WeaponType);
-			FName DisplayName = FName(*TextRepresentation.ToString());
-			UE_LOG(LogTemp, Log, TEXT("ModularWeaponComponent.cpp:: Weapon Part type: %s"), *TextRepresentation.ToString());
-
-			UStaticMeshComponent* MeshComp = NewObject<UStaticMeshComponent>(GetOwner(), UStaticMeshComponent::StaticClass(), DisplayName);
-
-			if (MeshComp)
+			UGunPart* GunPart = Cast<UGunPart>(GunParts[i]->GetDefaultObject());
+			if (GunPart->Mesh)
 			{
+				UStaticMesh* PartMesh = GunPart->Mesh;
 
-				MeshComp->RegisterComponent();
-				MeshComp->SetStaticMesh(GunPart->Mesh);
-				MeshComp->SetCollisionResponseToAllChannels(ECollisionResponse::ECR_Ignore);
-				MeshComp->SetWorldScale3D(GunPart->MeshScale);
+				const UEnum* PartType = StaticEnum<EWpnPartType>();
 
-				if (GunPart->Material)
+				FText TextRepresentation = PartType->GetDisplayNameTextByValue((int64)GunPart->WeaponType);
+				FName DisplayName = FName(*TextRepresentation.ToString());
+				UE_LOG(LogTemp, Log, TEXT("ModularWeaponComponent.cpp:: Weapon Part type: %s"), *TextRepresentation.ToString());
+
+				UStaticMeshComponent* MeshComp = NewObject<UStaticMeshComponent>(GetOwner(), UStaticMeshComponent::StaticClass(), DisplayName);
+
+				if (MeshComp)
 				{
-					MeshComp->SetMaterial(0, GunPart->Material);
+
+					MeshComp->RegisterComponent();
+					MeshComp->SetStaticMesh(GunPart->Mesh);
+					MeshComp->SetCollisionResponseToAllChannels(ECollisionResponse::ECR_Ignore);
+					MeshComp->SetWorldScale3D(GunPart->MeshScale);
+					MeshComp->SetWorldRotation(FQuat::MakeFromEuler(GunPart->MeshRotation));
+
+					if (GunPart->Material)
+					{
+						MeshComp->SetMaterial(0, GunPart->Material);
+					}
+
+					ensureMsgf(DoesSocketExist(DisplayName), TEXT("The socket %s for weapon part %s doesn't seem to exist. Please make sure the gun's skeletal mesh has a socket with the appropriate name"), *TextRepresentation.ToString(), *GunPart->GetName());
+					MeshComp->AttachToComponent(this, FAttachmentTransformRules::KeepRelativeTransform, DisplayName);
+
+					GunPartComponents.Add(MeshComp);
 				}
-
-				ensureMsgf(DoesSocketExist(DisplayName), TEXT("The socket %s for weapon part %s doesn't seem to exist. Please make sure the gun's skeletal mesh has a socket with the appropriate name"), *TextRepresentation.ToString(), *GunPart->GetName());
-				MeshComp->AttachToComponent(this, FAttachmentTransformRules::KeepRelativeTransform, DisplayName);
-
-				GunPartComponents.Add(MeshComp);
 			}
-		}
-		else
-		{
-			ensureMsgf(GunPart->Mesh, TEXT("MeshComp for part %s couldn't be created. Please ensure it actually has a mesh."), *GunPart->GetName());
-			continue;
-		}
+			else
+			{
+				ensureMsgf(GunPart->Mesh, TEXT("MeshComp for part %s couldn't be created. Please ensure it actually has a mesh."), *GunPart->GetName());
+				continue;
+			}
+		}		
 	}
 }
