@@ -4,7 +4,6 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
-#include "DA_Entity.h"
 #include "GunPartComponent.h"
 #include "Templates/SubclassOf.h"
 #include "EntityCharacter.generated.h"
@@ -17,9 +16,6 @@ class ABILITYSYSTEM2_API AEntityCharacter : public ACharacter
 public:
 	// Sets default values for this character's properties
 	AEntityCharacter();
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Stats")
-	TObjectPtr<UDA_Entity> EntityDataAsset;
 
 protected:
 	// Called when the game starts or when spawned

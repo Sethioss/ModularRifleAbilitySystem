@@ -7,7 +7,6 @@
 #include "Ability.h"
 #include "AbilitySystem2Projectile.h"
 #include "Engine/HitResult.h"
-#include "EmbarkedDataSet.h"
 #include "GunPartDataAsset.h"
 #include "Bullet.generated.h"
 
@@ -32,7 +31,6 @@ public:
 
 	// Sets default values for this actor's properties
 	ABullet();
-	ABullet(TObjectPtr<UAbility> SpawnAbility);
 
 	FOnBulletTraversalSignature OnTraversalDelegate;
 

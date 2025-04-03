@@ -11,11 +11,6 @@ ABullet::ABullet()
 
 }
 
-ABullet::ABullet(TObjectPtr<UAbility> SpawnAbility)
-{
-	
-}
-
 // Called when the game starts or when spawned
 void ABullet::BeginPlay()
 {

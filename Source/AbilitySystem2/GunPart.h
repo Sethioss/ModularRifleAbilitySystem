@@ -3,7 +3,6 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "AbilityStatDataAsset.h"
 #include "Ability.h"
 #include "DamageEffect.h"
 #include "GunPart.generated.h"
@@ -11,13 +10,11 @@
 UENUM()
 enum class EWpnPartType : uint8
 {
-	Cross,
 	Handle,
-	Magazine,
 	Cannon,
-	Hammer,
 	Visor,
-	GripPoint
+	GripPoint,
+	Clip
 };
 
 UCLASS(Blueprintable, BlueprintType)
@@ -41,9 +38,6 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Modular Gun System")
 	EWpnPartType WeaponType;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Modular Gun System")
-	TObjectPtr<UAbilityStatDataAsset> PartDataAsset;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Modular Gun System")
 	TArray< TSubclassOf<UAbility>> ShootAbilities;

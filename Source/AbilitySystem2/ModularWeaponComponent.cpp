@@ -37,10 +37,7 @@ void UTP_ModularWeaponComponent::Fire()
 				{
 					//Test to see if on shoot is called
 					Ability->OnShoot(nullptr, nullptr);
-
-					UEmbarkedDataSet* DataSet = NewObject<UEmbarkedDataSet>();
-					DataSet->AbilityName = Ability->GetName();
-
+					
 					ProjectileThrown->OnTraversalDelegate.AddDynamic(Ability, &UAbility::OnTraversal);
 					ProjectileThrown->OnHitDelegate.AddDynamic(Ability, &UAbility::OnHit);
 					ProjectileThrown->OnHitWallDelegate.AddDynamic(Ability, &UAbility::OnHitWall);
