@@ -10,8 +10,8 @@
 #include "GunPartDataAsset.h"
 #include "Bullet.generated.h"
 
-DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnBulletTraversalSignature);
-
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnShootSignature, AActor*, Instigator, AActor*, Bullet);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnBulletTraversalSignature, const float&, DeltaTime);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_ThreeParams(FOnHitSignature, AActor*, Instigator, AActor*, Bullet, FHitResult, HitResult);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnHitWallSignature, AActor*, Bullet, FHitResult, HitResult);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnMissSignature, AActor*, Bullet);
@@ -32,8 +32,10 @@ public:
 	// Sets default values for this actor's properties
 	ABullet();
 
+	UPROPERTY(BlueprintCallable)
+	FOnShootSignature OnShootDelegate;
+	UPROPERTY(BlueprintCallable)
 	FOnBulletTraversalSignature OnTraversalDelegate;
-
 	UPROPERTY(BlueprintCallable)
 	FOnHitSignature OnHitDelegate;
 	UPROPERTY(BlueprintCallable)

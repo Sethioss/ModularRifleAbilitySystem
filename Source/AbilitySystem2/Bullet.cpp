@@ -24,4 +24,3 @@ void ABullet::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 
 }
-

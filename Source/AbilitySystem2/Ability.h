@@ -21,10 +21,10 @@ public:
 	TObjectPtr<UGunPartDataAsset> RelevantStats;
 
 	UFUNCTION(BlueprintNativeEvent)
-	void OnShoot(AActor* Instigator, AActor* HitActor);
+	void OnShoot(AActor* Instigator, AActor* Bullet);
 
 	UFUNCTION(BlueprintNativeEvent)
-	void OnTraversal();
+	void OnTraversal(const float& DeltaTime);
 
 	UFUNCTION(BlueprintNativeEvent)
 	void OnHit(AActor* Instigator, AActor* Bullet, FHitResult HitResult);

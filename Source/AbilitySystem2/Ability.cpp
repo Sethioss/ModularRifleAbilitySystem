@@ -3,11 +3,11 @@
 
 #include "Ability.h"
 
-void UAbility::OnShoot_Implementation(AActor* Instigator, AActor* HitActor)
+void UAbility::OnShoot_Implementation(AActor* Instigator, AActor* Bullet)
 {
 }
 
-void UAbility::OnTraversal_Implementation()
+void UAbility::OnTraversal_Implementation(const float& DeltaTime)
 {
 }
 

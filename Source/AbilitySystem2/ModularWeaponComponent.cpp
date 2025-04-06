@@ -35,9 +35,7 @@ void UTP_ModularWeaponComponent::Fire()
 
 				if (Ability)
 				{
-					//Test to see if on shoot is called
-					Ability->OnShoot(nullptr, nullptr);
-					
+					ProjectileThrown->OnShootDelegate.AddDynamic(Ability, &UAbility::OnShoot);
 					ProjectileThrown->OnTraversalDelegate.AddDynamic(Ability, &UAbility::OnTraversal);
 					ProjectileThrown->OnHitDelegate.AddDynamic(Ability, &UAbility::OnHit);
 					ProjectileThrown->OnHitWallDelegate.AddDynamic(Ability, &UAbility::OnHitWall);
