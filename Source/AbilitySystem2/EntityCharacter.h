@@ -4,7 +4,6 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
-#include "GunPartComponent.h"
 #include "Templates/SubclassOf.h"
 #include "EntityCharacter.generated.h"
 
@@ -27,7 +26,4 @@ public:
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
-
-	UFUNCTION(BlueprintCallable)
-	void ReplaceWeaponPart(TSubclassOf<UGunPartComponent> Slot, TSubclassOf<UGunPartComponent> GunPart);
 };

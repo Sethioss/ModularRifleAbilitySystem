@@ -31,9 +31,3 @@ void AEntityCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCom
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
 }
-
-void AEntityCharacter::ReplaceWeaponPart(TSubclassOf<UGunPartComponent> Slot, TSubclassOf<UGunPartComponent> GunPart)
-{
-
-}
-

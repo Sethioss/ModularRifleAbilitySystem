@@ -4,7 +4,6 @@
 
 #include "CoreMinimal.h"
 #include "Engine/HitResult.h"
-#include "GunPartDataAsset.h"
 #include "Ability.generated.h"
 
 /**
@@ -16,9 +15,6 @@ class ABILITYSYSTEM2_API UAbility : public UObject
 	GENERATED_BODY()
 
 public:
-		
-	UPROPERTY(EditAnywhere)
-	TObjectPtr<UGunPartDataAsset> RelevantStats;
 
 	UFUNCTION(BlueprintNativeEvent)
 	void OnShoot(AActor* Instigator, AActor* Bullet);

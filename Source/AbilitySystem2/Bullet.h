@@ -7,7 +7,6 @@
 #include "Ability.h"
 #include "AbilitySystem2Projectile.h"
 #include "Engine/HitResult.h"
-#include "GunPartDataAsset.h"
 #include "Bullet.generated.h"
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnShootSignature, AActor*, Instigator, AActor*, Bullet);
@@ -25,9 +24,6 @@ class ABILITYSYSTEM2_API ABullet : public AAbilitySystem2Projectile
 	GENERATED_BODY()
 	
 public:
-	
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	TObjectPtr<UGunPartDataAsset> RelevantStats;
 
 	// Sets default values for this actor's properties
 	ABullet();
